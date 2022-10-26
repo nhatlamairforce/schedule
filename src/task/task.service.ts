@@ -8,6 +8,27 @@ export class TaskService {
       }
     
     async findOne (id: number): Promise<schedule> {
-      return arr[id];
+        let result = null;
+        arr.forEach(function (arr1val) {
+            if (arr1val["id"] == id)
+                result = arr1val;
+        });
+        return result;
+    }
+
+    async create (task: schedule): Promise<string> {
+        arr.push(task);
+        return "Success";
+      }
+    
+    async update(task: schedule): Promise<string> {
+        let result = "Not found";
+        arr.forEach(function (arr1val) {
+            if (arr1val["id"] == task["id"]){
+                arr1val = task;
+                result = "Success";
+            }
+        });
+        return result;
     }
 }

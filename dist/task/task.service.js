@@ -14,7 +14,26 @@ let TaskService = class TaskService {
         return data_1.default;
     }
     async findOne(id) {
-        return data_1.default[id];
+        let result = null;
+        data_1.default.forEach(function (arr1val) {
+            if (arr1val["id"] == id)
+                result = arr1val;
+        });
+        return result;
+    }
+    async create(task) {
+        data_1.default.push(task);
+        return "Success";
+    }
+    async update(task) {
+        let result = "Not found";
+        data_1.default.forEach(function (arr1val) {
+            if (arr1val["id"] == task["id"]) {
+                arr1val = task;
+                result = "Success";
+            }
+        });
+        return result;
     }
 };
 TaskService = __decorate([
